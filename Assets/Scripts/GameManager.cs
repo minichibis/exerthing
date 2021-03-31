@@ -32,12 +32,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         calorieScore = 0;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //only increments the calorieScore if the player is running
+        //only burns calories if the player is running
         if (SceneManager.GetActiveScene().name == "Running Scene")
         {
             StartCoroutine("burnCalories");
@@ -46,14 +42,21 @@ public class GameManager : MonoBehaviour
         {
             StopCoroutine("burnCalories");
         }
+    }
 
+    // Update is called once per frame
+    void Update()
+    {
         calorieText.text = "Calories: " + calorieScore;
     }
 
     private IEnumerator burnCalories()
     {
-        //player burns calories at a rate of about 3.3 calories per second
-        calorieScore++;
-        yield return new WaitForSeconds(.3f);
+        //player burns calories at a rate of about 1 calories per second
+        for (int i = 0; i > -1; i++)
+        {
+            calorieScore++;
+            yield return new WaitForSeconds(.3f);
+        }
     }
 }
