@@ -9,6 +9,11 @@ public class GameManager : MonoBehaviour
     public int calorieScore;
     public Text calorieText;
 
+    //player stats
+    public int speed;
+    public int stamina;
+    public int power;
+
     #region Singleton code
     public static GameManager instance;
 
@@ -32,6 +37,9 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         calorieScore = 0;
+        speed = 1;
+        stamina = 1;
+        power = 1;
 
         //only burns calories if the player is running
         if (SceneManager.GetActiveScene().name == "Running Scene")
