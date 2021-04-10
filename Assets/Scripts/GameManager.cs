@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, ObsServ
 {
     public int calorieScore;
     public Text calorieText;
@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public int speed;
     public int stamina;
     public int power;
+	
+	public float time;
 
     #region Singleton code
     public static GameManager instance;
@@ -45,6 +47,7 @@ public class GameManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Running Scene")
         {
             StartCoroutine("burnCalories");
+			time = 20;
         }
         else
         {
@@ -90,4 +93,8 @@ public class GameManager : MonoBehaviour
         power++;
         calorieScore -= 10;
     }
+	
+	public void updateObserver(){
+		time -= Time.deltaTime;
+	}
 }
