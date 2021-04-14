@@ -94,7 +94,8 @@ public class GameManager : MonoBehaviour, ObsServ
         calorieScore -= 10;
     }
 	
-	public void updateObserver(){
+	public void updateObserver()
+    {
 		time -= Time.deltaTime;
 	}
 }
