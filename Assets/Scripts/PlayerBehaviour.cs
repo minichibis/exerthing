@@ -8,13 +8,12 @@ public class PlayerBehaviour : MonoBehaviour, ObsCom
     public Collider2D duckCollider;
     public Collider2D baseCollider;
 	public List<ObsServ>observers = new List<ObsServ>();
+    public float jumpForce = 300f;
 
     // Start is called before the first frame update
     void Start()
     {
         rb2d = gameObject.GetComponent<Rigidbody2D>();
-        baseCollider = gameObject.GetComponent<BoxCollider2D>();
-        duckCollider = gameObject.GetComponent<BoxCollider2D>();
         duckCollider.enabled = false;
 		registerObserver(GameObject.Find("GameManager").GetComponent<GameManager>() as ObsServ);
     }
@@ -35,7 +34,7 @@ public class PlayerBehaviour : MonoBehaviour, ObsCom
 
     public void Jump()
     {
-        rb2d.AddForce(Vector2.up);
+        rb2d.AddForce(Vector2.up * jumpForce);
         Debug.Log("Jumping");
     }
 

@@ -469,5 +469,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb2d: {fileID: 0}
-  duckCollider: {fileID: 0}
-  baseCollider: {fileID: 0}
+  duckCollider: {fileID: 1558101696}
+  baseCollider: {fileID: 1558101697}
+  jumpForce: 300
