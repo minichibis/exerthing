@@ -88,7 +88,7 @@ public class SpawnManager : MonoBehaviour
         {
             tempSpawn = "Jump";
         }
-        Debug.Log("Type: " + tempSpawn);
+        //Debug.Log("Type: " + tempSpawn);
 
         spawn = factory.CreateSpawn(tempSpawn);
         Instantiate(spawn);
@@ -101,7 +101,7 @@ public class SpawnManager : MonoBehaviour
         cooledDown = true;
         
         
-        Debug.Log("Got to SpawnTarget End");
+        //Debug.Log("Got to SpawnTarget End");
         
     }
 }

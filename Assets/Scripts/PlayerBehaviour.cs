@@ -8,7 +8,7 @@ public class PlayerBehaviour : MonoBehaviour, ObsCom
     public Collider2D duckCollider;
     public Collider2D baseCollider;
 	public List<ObsServ>observers = new List<ObsServ>();
-    public float jumpForce = 300f;
+    public float jumpForce = 2000f;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +35,7 @@ public class PlayerBehaviour : MonoBehaviour, ObsCom
     public void Jump()
     {
         rb2d.AddForce(Vector2.up * jumpForce);
-        Debug.Log("Jumping");
+        //Debug.Log("Jumping");
     }
 
     public void Duck()
@@ -64,4 +64,32 @@ public class PlayerBehaviour : MonoBehaviour, ObsCom
 			g.updateObserver();
 		}
 	}
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        
+        if(other.gameObject.CompareTag("Obstacle"))
+        {
+            Debug.Log("Player Hit Obstacle [Trigger]");
+            //Do something to the player to indicate they hit the obstacle (feedback)
+            //Here
+
+            //Possibly decrement amount of running time after being hit
+            //Here
+        }
+    }
+
+    /*
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Obstacle"))
+        {
+            Debug.Log("Player Hit Obstacle [Collision]");
+            //Do something to the player to indicate they hit the obstacle (feedback)
+            //Here
+
+            //Possibly decrement amount of running time after being hit
+            //Here
+        }
+    }*/
 }
