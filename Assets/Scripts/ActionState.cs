@@ -5,4 +5,5 @@ using UnityEngine;
 public interface ActionState
 {
     void Action();
+	Sprite GetSprite();
 }

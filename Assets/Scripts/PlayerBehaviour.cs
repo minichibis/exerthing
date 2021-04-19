@@ -8,6 +8,7 @@ public class PlayerBehaviour : MonoBehaviour, ObsCom
     public Collider2D duckCollider;
     public Collider2D baseCollider;
 	public List<ObsServ>observers = new List<ObsServ>();
+	public SpriteRenderer renderer;
 
     private ActionState curState;
 
@@ -34,6 +35,7 @@ public class PlayerBehaviour : MonoBehaviour, ObsCom
             curState.Action();
         }
 		notifyObserver();
+		renderer.sprite = curState.GetSprite();
     }
 
     public void Jump()
