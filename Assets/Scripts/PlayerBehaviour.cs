@@ -8,14 +8,16 @@ public class PlayerBehaviour : MonoBehaviour, ObsCom
     public Collider2D duckCollider;
     public Collider2D baseCollider;
 	public List<ObsServ>observers = new List<ObsServ>();
-    public float jumpForce = 2000f;
+
+    private ActionState curState;
 
     // Start is called before the first frame update
     void Start()
     {
+        curState = gameObject.GetComponent<RunningState>();
         rb2d = gameObject.GetComponent<Rigidbody2D>();
         duckCollider.enabled = false;
-		registerObserver(GameObject.Find("GameManager").GetComponent<GameManager>() as ObsServ);
+		//registerObserver(GameObject.Find("GameManager").GetComponent<GameManager>() as ObsServ);
     }
 
     // Update is called once per frame
@@ -24,31 +26,38 @@ public class PlayerBehaviour : MonoBehaviour, ObsCom
         if(Input.GetKeyDown(KeyCode.W))
         {
             Jump();
+            curState.Action();
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
             Duck();
+            curState.Action();
         }
 		notifyObserver();
     }
 
     public void Jump()
     {
-        rb2d.AddForce(Vector2.up * jumpForce);
-        //Debug.Log("Jumping");
+        gameObject.GetComponent<RunningState>().enabled = false;
+        gameObject.GetComponent<JumpState>().enabled = true;
+        curState = gameObject.GetComponent<JumpState>();
     }
 
     public void Duck()
     {
-        baseCollider.enabled = false;
-        duckCollider.enabled = true;
-        Invoke("ResetPos", 1f);
+        gameObject.GetComponent<RunningState>().enabled = false;
+        gameObject.GetComponent<DuckingState>().enabled = true;
+        curState = gameObject.GetComponent<DuckingState>();
+        Invoke("Reset", 1f);
     }
 
-    public void ResetPos()
+    public void Reset()
     {
+        gameObject.GetComponent<DuckingState>().enabled = false;
         baseCollider.enabled = true;
         duckCollider.enabled = false;
+        gameObject.GetComponent<RunningState>().enabled = true;
+        curState = gameObject.GetComponent<RunningState>();
     }
 	
 	public void registerObserver(ObsServ o){
@@ -78,18 +87,20 @@ public class PlayerBehaviour : MonoBehaviour, ObsCom
             //Here
         }
     }
-
-    /*
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Obstacle"))
-        {
-            Debug.Log("Player Hit Obstacle [Collision]");
-            //Do something to the player to indicate they hit the obstacle (feedback)
-            //Here
+        //if (collision.gameObject.CompareTag("Obstacle"))
+        //{
+        //    Debug.Log("Player Hit Obstacle [Collision]");
+        //    //Do something to the player to indicate they hit the obstacle (feedback)
+        //    //Here
 
-            //Possibly decrement amount of running time after being hit
-            //Here
-        }
-    }*/
+        //    //Possibly decrement amount of running time after being hit
+        //    //Here
+        //}
+        gameObject.GetComponent<RunningState>().enabled = true;
+        gameObject.GetComponent<JumpState>().enabled = false;
+        curState = gameObject.GetComponent<RunningState>();
+    }
 }
