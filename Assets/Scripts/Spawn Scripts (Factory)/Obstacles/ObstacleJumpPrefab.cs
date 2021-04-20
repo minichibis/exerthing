@@ -9,7 +9,7 @@ public class ObstacleJumpPrefab : Obstacle
     {
         this.SpawnType = "Jump";
         this.CalorieValue = 0;
-        this.SpawnYValue = .4f;
+        this.SpawnYValue = -1.5f;
         this.minSpeed = 2;
         this.minSpeed = 5;
 

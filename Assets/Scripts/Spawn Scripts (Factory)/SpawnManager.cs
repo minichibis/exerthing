@@ -61,8 +61,9 @@ public class SpawnManager : MonoBehaviour
 
         //Switch to instead changing layer that spawn is set to
         //Vector3 spawnPos = new Vector3(Random.Range(-xRange, xRange), ySpawnPos);
-
-        Instantiate(spawn);
+		
+		
+        Instantiate(spawn, spawn.transform.position, spawn.transform.rotation);
         //Instantiate(spawn, Vector2(0,0,0), spawn.transform.rotation);
         //cooledDown = true;
         //float temp = Random.Range(1f, 3f);
@@ -91,7 +92,7 @@ public class SpawnManager : MonoBehaviour
         //Debug.Log("Type: " + tempSpawn);
 
         spawn = factory.CreateSpawn(tempSpawn);
-        Instantiate(spawn);
+        Instantiate(spawn, spawn.transform.position, spawn.transform.rotation);
         
         //SpawnObject(tempSpawn);
 
