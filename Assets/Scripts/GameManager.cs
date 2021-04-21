@@ -59,7 +59,6 @@ public class GameManager : MonoBehaviour, ObsServ
     void Update()
     {
         calorieText.text = "Calories: " + calorieScore;
-
     }
 
     private IEnumerator burnCalories()
