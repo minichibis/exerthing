@@ -60,10 +60,6 @@ public class GameManager : MonoBehaviour, ObsServ
     {
         calorieText.text = "Calories: " + calorieScore;
 
-        if (SceneManager.GetActiveScene().name == "Level Up Scene")
-        {
-
-        }
     }
 
     private IEnumerator burnCalories()
@@ -74,24 +70,6 @@ public class GameManager : MonoBehaviour, ObsServ
             calorieScore++;
             yield return new WaitForSeconds(.3f);
         }
-    }
-
-    private void increaseSpeed()
-    {
-        speed++;
-        calorieScore -= 10;
-    }
-
-    private void increaseStamina()
-    {
-        stamina++;
-        calorieScore -= 10;
-    }
-
-    private void increasePower()
-    {
-        power++;
-        calorieScore -= 10;
     }
 	
 	public void updateObserver()
