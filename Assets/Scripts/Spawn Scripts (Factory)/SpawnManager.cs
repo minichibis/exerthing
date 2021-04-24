@@ -8,11 +8,20 @@ public class SpawnManager : MonoBehaviour
     public bool toggleSpawn = false;
 
     private string tempSpawn;
+	
+	public float min;
+	public float max;
 
     //Need to attach the simple factory GameObject to this reference in the inspector
     public SpawnObstacleFactory factory;
 
     private GameObject spawn;
+	
+	void Start()
+    {
+		min = 2.5f;
+		max = 3.75f;
+	}
 
     private void Update()
     {
@@ -96,10 +105,16 @@ public class SpawnManager : MonoBehaviour
         
         //SpawnObject(tempSpawn);
 
-        float temp = Random.Range(1f, 3f);
+        float temp = Random.Range(min, max);
         yield return new WaitForSeconds(temp);
         
         cooledDown = true;
+		
+		min -= 0.035f;
+		max -= 0.05f;
+		
+		min = Mathf.Max(min, 0.95f);
+		max = Mathf.Max(max, min + 0.75f);
         
         
         //Debug.Log("Got to SpawnTarget End");

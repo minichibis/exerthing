@@ -25,7 +25,7 @@ public class Obstacle : MonoBehaviour
 
         //Might have problems with rewinding gameplay if conditional destroys the object 
         //Maybe only rewind just a little bit after getting hit to try the obstacle again?
-        if (gameObject.transform.position.x < -8.2) //Max value here dependent on scene transforms 
+        if (gameObject.transform.position.x < -10) //Max value here dependent on scene transforms 
         {                                          //(might turn into variable)
             Die();
         }

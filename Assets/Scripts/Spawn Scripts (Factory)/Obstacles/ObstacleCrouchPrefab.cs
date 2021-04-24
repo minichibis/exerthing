@@ -9,7 +9,7 @@ public class ObstacleCrouchPrefab : Obstacle
     {
         this.SpawnType = "Crouch";
         this.CalorieValue = 0;
-        this.SpawnYValue = 0.25f;
+        this.SpawnYValue = -0.5f;
         this.minSpeed = 2;
         this.minSpeed = 5;
         

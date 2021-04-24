@@ -24,18 +24,20 @@ public class PlayerBehaviour : MonoBehaviour, ObsCom
     // Update is called once per frame
     void Update()
     {
-		if(gameObject.GetComponent<RunningState>().enabled){
 			if(Input.GetKeyDown(KeyCode.W))
 			{
-				Jump();
-				curState.Action();
+				if(gameObject.GetComponent<RunningState>().enabled || gameObject.GetComponent<DuckingState>().enabled){
+					Jump();
+					curState.Action();
+				}
 			}
 			else if (Input.GetKeyDown(KeyCode.S))
 			{
-				Duck();
-				curState.Action();
+				if(gameObject.GetComponent<RunningState>().enabled){
+					Duck();
+					curState.Action();
+				}
 			}
-		}
 		notifyObserver();
 		renderer.sprite = curState.GetSprite();
     }
@@ -43,6 +45,7 @@ public class PlayerBehaviour : MonoBehaviour, ObsCom
     public void Jump()
     {
         gameObject.GetComponent<RunningState>().enabled = false;
+		gameObject.GetComponent<DuckingState>().enabled = false;
         gameObject.GetComponent<JumpState>().enabled = true;
         curState = gameObject.GetComponent<JumpState>();
     }
@@ -52,16 +55,18 @@ public class PlayerBehaviour : MonoBehaviour, ObsCom
         gameObject.GetComponent<RunningState>().enabled = false;
         gameObject.GetComponent<DuckingState>().enabled = true;
         curState = gameObject.GetComponent<DuckingState>();
-        Invoke("Reset", 1f);
+        Invoke("Reset", 0.8f);
     }
 
     public void Reset()
     {
-        gameObject.GetComponent<DuckingState>().enabled = false;
-        baseCollider.enabled = true;
-        duckCollider.enabled = false;
-        gameObject.GetComponent<RunningState>().enabled = true;
-        curState = gameObject.GetComponent<RunningState>();
+		if(gameObject.GetComponent<DuckingState>().enabled){
+			gameObject.GetComponent<DuckingState>().enabled = false;
+			baseCollider.enabled = true;
+			duckCollider.enabled = false;
+			gameObject.GetComponent<RunningState>().enabled = true;
+			curState = gameObject.GetComponent<RunningState>();
+		}
     }
 	
 	public void registerObserver(ObsServ o){
