@@ -9,6 +9,7 @@ public class PlayerBehaviour : MonoBehaviour, ObsCom
     public Collider2D baseCollider;
 	public List<ObsServ>observers = new List<ObsServ>();
 	public SpriteRenderer renderer;
+    public AudioClip hitSound;
 
     private ActionState curState;
 
@@ -91,6 +92,7 @@ public class PlayerBehaviour : MonoBehaviour, ObsCom
             Debug.Log("Player Hit Obstacle [Trigger]");
             //Do something to the player to indicate they hit the obstacle (feedback)
             //Here
+            AudioSource.PlayClipAtPoint(hitSound, other.gameObject.transform.position);
 
             //Possibly decrement amount of running time after being hit
             //Here
