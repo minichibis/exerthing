@@ -1,5 +1,6 @@
 ﻿/*
  * Liam Barrett
+ * CIS 497 Spring
  * Project 6
  * GameManager.cs
  * Singleton game manager that maintains player stats and score over the course of the game
