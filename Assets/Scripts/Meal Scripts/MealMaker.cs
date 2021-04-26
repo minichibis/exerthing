@@ -68,7 +68,7 @@ public class MealMaker : MonoBehaviour
 
     public void DisplayMeal()
     {
-        buffText.text = "Speed: +" + meal.getSpeedBuff() + "\nStamina: +" + meal.getStamBuff()
-            + "\nPower: +" + meal.getPowerBuff();
+        buffText.text = "Speed Buff: " + meal.getSpeedBuff() + "\n\nStamina Buff: " + meal.getStamBuff()
+            + "\n\nPower Buff: " + meal.getPowerBuff();
     }
 }
