@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MealMaker : MonoBehaviour
 {
@@ -58,7 +59,11 @@ public class MealMaker : MonoBehaviour
 
     public void finish()
     {
+        gameManager.speedBuff = meal.getSpeedBuff();
+        gameManager.stamBuff = meal.getStamBuff();
+        gameManager.powerBuff = meal.getPowerBuff();
 
+        SceneManager.LoadScene("Running Scene");
     }
 
     public void DisplayMeal()

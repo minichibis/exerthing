@@ -102,6 +102,6 @@ public class LevelUp : MonoBehaviour
         gameManager.power += powerUpCount;
 
         resetLevelUp();
-        SceneManager.LoadScene("Running Scene");
+        SceneManager.LoadScene("Meal Scene");
     }
 }
