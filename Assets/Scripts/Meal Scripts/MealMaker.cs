@@ -11,7 +11,7 @@ public class MealMaker : MonoBehaviour
     public Text buffText;
     private bool drinkSet;
 
-    void Awake()
+    void Start()
     {
         gameManager = GameManager.instance;
         drinkSet = false;
