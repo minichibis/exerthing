@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class LevelUp : MonoBehaviour
 {
@@ -13,10 +14,10 @@ public class LevelUp : MonoBehaviour
     [SerializeField]private int stamUpCount;
     [SerializeField]private int powerUpCount;
 
-    public Text speedText;
-    public Text staminaText;
-    public Text powerText;
-    public Text caloriesText;
+    public TextMeshProUGUI speedText;
+    public TextMeshProUGUI staminaText;
+    public TextMeshProUGUI powerText;
+    public TextMeshProUGUI caloriesText;
 
     void Start()
     {

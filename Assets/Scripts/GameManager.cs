@@ -10,11 +10,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour, ObsServ
 {
     public int calorieScore;
-    public Text calorieText;
+    public TextMeshProUGUI calorieText;
 	public Text engtext;
     public Text distText;
     public Text gameOver;
