@@ -15,7 +15,6 @@ public class MealMaker : MonoBehaviour
     {
         gameManager = GameManager.instance;
         drinkSet = false;
-        DisplayMeal();
     }
 
     public void setMainCourse(string newMeal)
