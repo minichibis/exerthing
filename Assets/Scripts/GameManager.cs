@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour, ObsServ
 {
     public int calorieScore;
     public Text calorieText;
+	public Text engtext;
 
     //player stats
     public int speed;
@@ -54,7 +55,7 @@ public class GameManager : MonoBehaviour, ObsServ
         if (SceneManager.GetActiveScene().name == "Running Scene")
         {
             StartCoroutine("burnCalories");
-			time = 20;
+			time = 20 + stamina;
         }
         else
         {
@@ -66,6 +67,7 @@ public class GameManager : MonoBehaviour, ObsServ
     void Update()
     {
         calorieText.text = "Calories: " + calorieScore;
+		engtext.text = "Energy: " + ((int)time + 1);
     }
 
     private IEnumerator burnCalories()
@@ -81,5 +83,8 @@ public class GameManager : MonoBehaviour, ObsServ
 	public void updateObserver()
     {
 		time -= Time.deltaTime;
+		if(time <= 0){
+			GameObject.Find("Player").GetComponent<PlayerBehaviour>().Kill(this.gameObject);
+		}
 	}
 }
