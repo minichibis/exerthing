@@ -28,9 +28,9 @@ public class LevelUp : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "Level Up Scene")
         {
-            speedText.text = "" + gameManager.speed + speedUpCount;
-            staminaText.text = "" + gameManager.stamina + stamUpCount;
-            powerText.text = "" + gameManager.power + powerUpCount;
+            speedText.text = "" + (gameManager.speed + speedUpCount);
+            staminaText.text = "" + (gameManager.stamina + stamUpCount);
+            powerText.text = "" + (gameManager.power + powerUpCount);
         }
     }
 

@@ -1292,7 +1292,7 @@ MonoBehaviour:
     Stamina: Increases your maximum energy
 
 
-    Power: Reduces how much energy you use each step and each time you jump or slide'
+    Power: Increases the rate at which you earn calorie points'
 --- !u!222 &855682032
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1659,9 +1659,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   calorieScore: 0
   calorieText: {fileID: 187582368}
+  engtext: {fileID: 0}
   speed: 0
   stamina: 0
   power: 0
+  speedBuff: 0
+  stamBuff: 0
+  powerBuff: 0
   time: 0
 --- !u!4 &1123387159
 Transform:
