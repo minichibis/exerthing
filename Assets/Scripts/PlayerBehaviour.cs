@@ -10,7 +10,9 @@ public class PlayerBehaviour : MonoBehaviour, ObsCom
 	public List<ObsServ>observers = new List<ObsServ>();
 	public SpriteRenderer renderer;
     public AudioClip hitSound;
+	public GameObject gameManager;
 
+	private GameManager gManager;
     private ActionState curState;
 
     // Start is called before the first frame update
@@ -19,6 +21,7 @@ public class PlayerBehaviour : MonoBehaviour, ObsCom
         curState = gameObject.GetComponent<RunningState>();
         rb2d = gameObject.GetComponent<Rigidbody2D>();
         duckCollider.enabled = false;
+		gManager = gameManager.GetComponent<GameManager>();
 		registerObserver(GameObject.Find("GameManager").GetComponent<GameManager>() as ObsServ);
     }
 
@@ -45,6 +48,7 @@ public class PlayerBehaviour : MonoBehaviour, ObsCom
 
     public void Jump()
     {
+		gManager.time -= 5;
         gameObject.GetComponent<RunningState>().enabled = false;
 		gameObject.GetComponent<DuckingState>().enabled = false;
         gameObject.GetComponent<JumpState>().enabled = true;
@@ -53,7 +57,8 @@ public class PlayerBehaviour : MonoBehaviour, ObsCom
 
     public void Duck()
     {
-        gameObject.GetComponent<RunningState>().enabled = false;
+		gManager.time -= 5;
+		gameObject.GetComponent<RunningState>().enabled = false;
         gameObject.GetComponent<DuckingState>().enabled = true;
         curState = gameObject.GetComponent<DuckingState>();
         Invoke("Reset", 0.8f);
@@ -70,15 +75,18 @@ public class PlayerBehaviour : MonoBehaviour, ObsCom
 		}
     }
 	
-	public void registerObserver(ObsServ o){
+	public void registerObserver(ObsServ o)
+	{
 		observers.Add(o);
 	}
 	
-	public void removeObserver(ObsServ o){
+	public void removeObserver(ObsServ o)
+	{
 		observers.Remove(o);
 	}
 	
-	public void notifyObserver(){
+	public void notifyObserver()
+	{
 		foreach(ObsServ g in observers){
 			g.updateObserver();
 		}
@@ -111,11 +119,13 @@ public class PlayerBehaviour : MonoBehaviour, ObsCom
 		}
     }
 	
-	public void Kill(GameObject other){
+	public void Kill(GameObject other)
+	{
 		Debug.Log("Player Hit Obstacle [Trigger]");
 		//Do something to the player to indicate they hit the obstacle (feedback)
 		//Here
 		AudioSource.PlayClipAtPoint(hitSound, other.transform.position);
+		gManager.time -= (11 - gManager.power);
 
 		//Possibly decrement amount of running time after being hit
 		//Here

@@ -1660,13 +1660,17 @@ MonoBehaviour:
   calorieScore: 0
   calorieText: {fileID: 187582368}
   engtext: {fileID: 0}
+  distText: {fileID: 0}
+  gameOver: {fileID: 0}
   speed: 0
   stamina: 0
   power: 0
   speedBuff: 0
   stamBuff: 0
   powerBuff: 0
+  isRunning: 0
   time: 0
+  distance: 0
 --- !u!4 &1123387159
 Transform:
   m_ObjectHideFlags: 0
@@ -2194,6 +2198,7 @@ MonoBehaviour:
   speedText: {fileID: 59740456}
   staminaText: {fileID: 168173343}
   powerText: {fileID: 153057384}
+  caloriesText: {fileID: 187582368}
 --- !u!4 &1385450949
 Transform:
   m_ObjectHideFlags: 0

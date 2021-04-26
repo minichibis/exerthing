@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour, ObsServ
     public int calorieScore;
     public Text calorieText;
 	public Text engtext;
+    public Text distText;
+    public GameObject gameOver;
+    //public GameObject[] background;
+    //public GameObject[] obstacles;
 
     //player stats
     public int speed;
@@ -25,8 +29,11 @@ public class GameManager : MonoBehaviour, ObsServ
     public int speedBuff;
     public int stamBuff;
     public int powerBuff;
-	
+
+    public bool isRunning;
+
 	public float time;
+    public float distance;
 
     #region Singleton code
     public static GameManager instance;
@@ -62,20 +69,52 @@ public class GameManager : MonoBehaviour, ObsServ
         //only burns calories if the player is running
         if (SceneManager.GetActiveScene().name == "Running Scene")
         {
+            gameOver.SetActive(false);
+            isRunning = true;
             StartCoroutine("burnCalories");
-			time = 20 + stamina;
+            StartCoroutine("loseEnergy");
+            StartCoroutine("runDistance");
+            time = 49 + stamina;
+            distance = 100;
         }
         else
         {
+            isRunning = false;
             StopCoroutine("burnCalories");
+            StopCoroutine("loseEnergy");
+            StartCoroutine("runDistance");
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        calorieText.text = "Calories: " + calorieScore;
-		engtext.text = "Energy: " + ((int)time + 1);
+        if(isRunning)
+        {
+            PlayerPrefs.SetInt("Calories", calorieScore);
+            calorieText.text = "Calories: " + calorieScore;
+            distText.text = "Distance to go: " + distance;
+            if (time > 0)
+            {
+                engtext.text = "Energy: " + ((int)time + 1);
+            }
+            else
+            {
+                engtext.text = "Energy: 0";
+                //background = GameObject.FindGameObjectsWithTag("MovingBackground");
+                //obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
+                //for(int i = 0; i < background.Length; i++)
+                //{
+                //    background[i].GetComponent<Mover>().enabled = false;
+                //}
+                //for(int i = 0; i < obstacles.Length; i++)
+                //{
+                //    obstacles[i].GetComponent<MoveLeft>().enabled = false;
+                //}
+                gameOver.SetActive(true);
+                Invoke("LevelUp", 0.5f);
+            }
+        }
     }
 
     private IEnumerator burnCalories()
@@ -87,12 +126,36 @@ public class GameManager : MonoBehaviour, ObsServ
             yield return new WaitForSeconds(.3f);
         }
     }
-	
-	public void updateObserver()
+
+    private IEnumerator loseEnergy()
+    {
+        for (int i = 0; i > -1; i++)
+        {
+            time--;
+            yield return new WaitForSeconds(.3f);
+        }
+    }
+
+    private IEnumerator runDistance()
+    {
+        for (int i = 0; i > -1; i++)
+        {
+            distance -= speed;
+            yield return new WaitForSeconds(.3f);
+        }
+    }
+
+    public void updateObserver()
     {
 		time -= Time.deltaTime;
-		if(time <= 0){
+		if(time <= 0)
+        {
 			GameObject.Find("Player").GetComponent<PlayerBehaviour>().Kill(this.gameObject);
 		}
 	}
+
+    public void LevelUp()
+    {
+        SceneManager.LoadScene("Level Up Scene");
+    }
 }

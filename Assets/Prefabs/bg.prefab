@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2536805898478321532}
   m_Layer: 0
   m_Name: bg
-  m_TagString: Untagged
+  m_TagString: MovingBackground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
