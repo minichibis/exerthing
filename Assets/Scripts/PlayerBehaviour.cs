@@ -19,7 +19,7 @@ public class PlayerBehaviour : MonoBehaviour, ObsCom
         curState = gameObject.GetComponent<RunningState>();
         rb2d = gameObject.GetComponent<Rigidbody2D>();
         duckCollider.enabled = false;
-		//registerObserver(GameObject.Find("GameManager").GetComponent<GameManager>() as ObsServ);
+		registerObserver(GameObject.Find("GameManager").GetComponent<GameManager>() as ObsServ);
     }
 
     // Update is called once per frame
@@ -89,13 +89,7 @@ public class PlayerBehaviour : MonoBehaviour, ObsCom
         
         if(other.gameObject.CompareTag("Obstacle"))
         {
-            Debug.Log("Player Hit Obstacle [Trigger]");
-            //Do something to the player to indicate they hit the obstacle (feedback)
-            //Here
-            AudioSource.PlayClipAtPoint(hitSound, other.gameObject.transform.position);
-
-            //Possibly decrement amount of running time after being hit
-            //Here
+            Kill(other.gameObject);
         }
     }
     
@@ -116,4 +110,14 @@ public class PlayerBehaviour : MonoBehaviour, ObsCom
 			curState = gameObject.GetComponent<RunningState>();
 		}
     }
+	
+	public void Kill(GameObject other){
+		Debug.Log("Player Hit Obstacle [Trigger]");
+		//Do something to the player to indicate they hit the obstacle (feedback)
+		//Here
+		AudioSource.PlayClipAtPoint(hitSound, other.transform.position);
+
+		//Possibly decrement amount of running time after being hit
+		//Here
+	}
 }
