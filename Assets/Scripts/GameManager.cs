@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour, ObsServ
         //player burns calories at a rate of about 3 calories per second at base level
         for (int i = 0; i > -1; i++)
         {
-            calorieScore += 1 + (power / 5);
+            calorieScore += 1 + (power / 5) + (powerBuff / 5);
             yield return new WaitForSeconds(.3f);
         }
     }
