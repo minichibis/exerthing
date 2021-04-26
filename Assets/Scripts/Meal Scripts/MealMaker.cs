@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MealMaker : MonoBehaviour
 {
     public Meal meal;
     public GameManager gameManager;
-    public Text buffText;
+    public TextMeshProUGUI buffText;
     private bool drinkSet;
 
     void Start()
