@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*
+ * Liam Barrett
+ * Project 6
+ * GameManager.cs
+ * Singleton game manager that maintains player stats and score over the course of the game
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
