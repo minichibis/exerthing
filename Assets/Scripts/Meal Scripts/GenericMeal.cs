@@ -1,21 +1,14 @@
-﻿/*
- * Liam Barrett
- * CIS 497 Spring
- * Project 6
- * Protein Bar.cs
- * Meal course that greatly increases player's power
- */
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProteinBar : Meal
+public class GenericMeal : Meal
 {
-    public ProteinBar()
+    public GenericMeal()
     {
-        speedBuff = 2;
-        stamBuff = 2;
-        powerBuff = 2;
+        speedBuff = 0;
+        stamBuff = 0;
+        powerBuff = 0;
     }
 
     public override int getSpeedBuff()

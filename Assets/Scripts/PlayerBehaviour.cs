@@ -48,7 +48,7 @@ public class PlayerBehaviour : MonoBehaviour, ObsCom
 
     public void Jump()
     {
-		gManager.time -= 5;
+		//gManager.time -= 5;
         gameObject.GetComponent<RunningState>().enabled = false;
 		gameObject.GetComponent<DuckingState>().enabled = false;
         gameObject.GetComponent<JumpState>().enabled = true;
@@ -57,7 +57,7 @@ public class PlayerBehaviour : MonoBehaviour, ObsCom
 
     public void Duck()
     {
-		gManager.time -= 5;
+		//gManager.time -= 5;
 		gameObject.GetComponent<RunningState>().enabled = false;
         gameObject.GetComponent<DuckingState>().enabled = true;
         curState = gameObject.GetComponent<DuckingState>();
@@ -124,8 +124,10 @@ public class PlayerBehaviour : MonoBehaviour, ObsCom
 		Debug.Log("Player Hit Obstacle [Trigger]");
 		//Do something to the player to indicate they hit the obstacle (feedback)
 		//Here
-		AudioSource.PlayClipAtPoint(hitSound, other.transform.position);
-		gManager.time -= (11 - gManager.power);
+		if(!gManager.killed){
+			AudioSource.PlayClipAtPoint(hitSound, other.transform.position);
+			gManager.time -= (11 - gManager.power);
+		}
 
 		//Possibly decrement amount of running time after being hit
 		//Here

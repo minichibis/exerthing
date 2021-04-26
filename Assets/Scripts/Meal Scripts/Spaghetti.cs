@@ -16,7 +16,7 @@ public class Spaghetti : Meal
         //mild increases in speed and power for eating, big increase in stamina because of carbs
         speedBuff = 1;
         stamBuff = 5;
-        powerBuff = 1;
+        powerBuff = 0; //get some protien if you want power man!
     }
 
     public override int getSpeedBuff()

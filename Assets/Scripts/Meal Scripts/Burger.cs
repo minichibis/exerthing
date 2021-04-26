@@ -13,9 +13,9 @@ public class Burger : Meal
 {
     public Burger()
     {
-        speedBuff = -1;
-        stamBuff = -1;
-        powerBuff = 1;
+        speedBuff = -3;
+        stamBuff = -2;
+        powerBuff = 5;
     }
 
     public override int getSpeedBuff()

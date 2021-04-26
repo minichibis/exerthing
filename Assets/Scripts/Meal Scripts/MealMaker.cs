@@ -15,6 +15,7 @@ public class MealMaker : MonoBehaviour
     {
         gameManager = GameManager.instance;
         drinkSet = false;
+		meal = new GenericMeal();
         DisplayMeal();
     }
 

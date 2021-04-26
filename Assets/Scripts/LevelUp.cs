@@ -7,10 +7,11 @@ using UnityEngine.UI;
 public class LevelUp : MonoBehaviour
 {
     GameManager gameManager;
+	KeepShitPlease k;
 
-    private int speedUpCount;
-    private int stamUpCount;
-    private int powerUpCount;
+    [SerializeField]private int speedUpCount;
+    [SerializeField]private int stamUpCount;
+    [SerializeField]private int powerUpCount;
 
     public Text speedText;
     public Text staminaText;
@@ -20,6 +21,7 @@ public class LevelUp : MonoBehaviour
     void Start()
     {
         gameManager = GameManager.instance;
+		k = KeepShitPlease.k;
         speedUpCount = 0;
         stamUpCount = 0;
         powerUpCount = 0;
@@ -63,7 +65,7 @@ public class LevelUp : MonoBehaviour
 
     public void increaseStamina()
     {
-        if (gameManager.calorieScore >= 10)
+        if (PlayerPrefs.GetInt("Calories") >= 10)
         {
             stamUpCount++;
             PlayerPrefs.SetInt("Calories", PlayerPrefs.GetInt("Calories") - 10);
@@ -81,7 +83,7 @@ public class LevelUp : MonoBehaviour
 
     public void increasePower()
     {
-        if (gameManager.calorieScore >= 10)
+        if (PlayerPrefs.GetInt("Calories") >= 10)
         {
             powerUpCount++; 
             PlayerPrefs.SetInt("Calories", PlayerPrefs.GetInt("Calories") - 10);
@@ -102,6 +104,9 @@ public class LevelUp : MonoBehaviour
         gameManager.speed += speedUpCount;
         gameManager.stamina += stamUpCount;
         gameManager.power += powerUpCount;
+		k.speed += speedUpCount;
+        k.stamina += stamUpCount;
+        k.power += powerUpCount;
 
         resetLevelUp();
         PlayerPrefs.DeleteKey("Calories");

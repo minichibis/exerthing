@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour, ObsServ
     public Text calorieText;
 	public Text engtext;
     public Text distText;
-    public GameObject gameOver;
+    public Text gameOver;
     //public GameObject[] background;
     //public GameObject[] obstacles;
 
@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour, ObsServ
 
 	public float time;
     public float distance;
+	
+	public bool killed;
 
     #region Singleton code
     public static GameManager instance;
@@ -58,24 +60,38 @@ public class GameManager : MonoBehaviour, ObsServ
     void Start()
     {
         calorieScore = 0;
-        speed = 1;
-        stamina = 1;
-        power = 1;
+		if(KeepShitPlease.k == null){
+			speed = 1;
+			stamina = 1;
+			power = 1;
 
-        speedBuff = 0;
-        stamBuff = 0;
-        powerBuff = 0;
+			speedBuff = 0;
+			stamBuff = 0;
+			powerBuff = 0;
+		}else{
+			KeepShitPlease k = KeepShitPlease.k;
+			speed = k.speed;
+			stamina = k.stamina;
+			power = k.power;
+			speedBuff = k.speedBuff;
+			stamBuff = k.stamBuff;
+			powerBuff = k.powerBuff;
+			Debug.Log(k.speed);
+			Debug.Log(speed);
+			Debug.Log(k.power);
+			Debug.Log(power);
+		}
 
         //only burns calories if the player is running
         if (SceneManager.GetActiveScene().name == "Running Scene")
         {
-            gameOver.SetActive(false);
+            gameOver.gameObject.SetActive(false);
             isRunning = true;
             StartCoroutine("burnCalories");
             StartCoroutine("loseEnergy");
             StartCoroutine("runDistance");
-            time = 49 + stamina;
-            distance = 100;
+            time = 49;
+            distance = 250;
         }
         else
         {
@@ -84,6 +100,7 @@ public class GameManager : MonoBehaviour, ObsServ
             StopCoroutine("loseEnergy");
             StartCoroutine("runDistance");
         }
+		killed = false;
     }
 
     // Update is called once per frame
@@ -93,10 +110,17 @@ public class GameManager : MonoBehaviour, ObsServ
         {
             PlayerPrefs.SetInt("Calories", calorieScore);
             calorieText.text = "Calories: " + calorieScore;
-            distText.text = "Distance to go: " + distance;
+            distText.text = "Distance to go: " + (int)distance;
             if (time > 0)
             {
                 engtext.text = "Energy: " + ((int)time + 1);
+				if(distance < 0){
+					isRunning = false;
+					killed = true;
+					gameOver.gameObject.SetActive(true);
+					gameOver.text = "You Win!";
+					Invoke("LevelUp", 1.0f);
+				}
             }
             else
             {
@@ -111,7 +135,8 @@ public class GameManager : MonoBehaviour, ObsServ
                 //{
                 //    obstacles[i].GetComponent<MoveLeft>().enabled = false;
                 //}
-                gameOver.SetActive(true);
+                gameOver.gameObject.SetActive(true);
+				gameOver.text = "Out of Energy!";
                 Invoke("LevelUp", 0.5f);
             }
         }
@@ -140,7 +165,7 @@ public class GameManager : MonoBehaviour, ObsServ
     {
         for (int i = 0; i > -1; i++)
         {
-            distance -= speed;
+            distance -= 1 + ((float)speed * 0.1f) + ((float)speedBuff * 0.1f);
             yield return new WaitForSeconds(.3f);
         }
     }
@@ -148,9 +173,10 @@ public class GameManager : MonoBehaviour, ObsServ
     public void updateObserver()
     {
 		time -= Time.deltaTime;
-		if(time <= 0)
+		if(time <= 0 && killed == false)
         {
 			GameObject.Find("Player").GetComponent<PlayerBehaviour>().Kill(this.gameObject);
+			killed = true;
 		}
 	}
 

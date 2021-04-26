@@ -11,6 +11,8 @@ public class SpawnManager : MonoBehaviour
 	
 	public float min;
 	public float max;
+	
+	public bool first = true;
 
     //Need to attach the simple factory GameObject to this reference in the inspector
     public SpawnObstacleFactory factory;
@@ -100,8 +102,12 @@ public class SpawnManager : MonoBehaviour
         }
         //Debug.Log("Type: " + tempSpawn);
 
+		if(!first){
         spawn = factory.CreateSpawn(tempSpawn);
         Instantiate(spawn, spawn.transform.position, spawn.transform.rotation);
+		}
+		
+		first = false;
         
         //SpawnObject(tempSpawn);
 
@@ -110,8 +116,8 @@ public class SpawnManager : MonoBehaviour
         
         cooledDown = true;
 		
-		min -= 0.035f;
-		max -= 0.05f;
+		min -= 0.1f;
+		max -= 0.2f;
 		
 		min = Mathf.Max(min, 0.95f);
 		max = Mathf.Max(max, min + 0.75f);
