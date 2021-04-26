@@ -11,9 +11,9 @@ using UnityEngine;
 
 public abstract class Meal
 {
-    public int speedBuff;
-    public int stamBuff;
-    public int powerBuff;
+    public int speedBuff = 0;
+    public int stamBuff = 0;
+    public int powerBuff = 0;
 
     public abstract int getSpeedBuff();
     public abstract int getStamBuff();

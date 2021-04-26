@@ -951,7 +951,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1144941800}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1901982128}
+        m_MethodName: setMainCourse
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Burger
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1144941800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1065,7 +1076,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1179033376}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1901982128}
+        m_MethodName: setDrink
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Water
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1179033376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1256,7 +1278,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1373502282}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1901982128}
+        m_MethodName: setMainCourse
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Protein Bar
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1373502282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1547,7 +1580,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1736865503}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1901982128}
+        m_MethodName: setDrink
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Energy Drink
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1736865503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1740,6 +1784,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1819416397}
   m_CullTransparentMesh: 0
+--- !u!1 &1901982126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1901982127}
+  - component: {fileID: 1901982128}
+  m_Layer: 0
+  m_Name: MealMaker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1901982127
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901982126}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 271.53574, y: 239.53934, z: -7.039443}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1901982128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901982126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed9010a06f5e5fc4cab622c59b8f1fee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  buffText: {fileID: 463655339}
 --- !u!1 &1994887758
 GameObject:
   m_ObjectHideFlags: 0
@@ -1818,7 +1907,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1994887761}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1901982128}
+        m_MethodName: setMainCourse
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Spaghetti
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1994887761
 MonoBehaviour:
   m_ObjectHideFlags: 0
