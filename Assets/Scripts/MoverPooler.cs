@@ -17,6 +17,12 @@ public class MoverPooler : MonoBehaviour
 		Spawn(pools[1]);
 		Spawn(pools[0]);
 		Spawn(pools[1]);
+		pools[0].Reposition(0);
+		pools[0].Reposition(0);
+		pools[0].Reposition(1);
+		pools[1].Reposition(0);
+		pools[1].Reposition(0);
+		pools[1].Reposition(1);
     }
 
     // Update is called once per frame

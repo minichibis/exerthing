@@ -17,9 +17,6 @@ public class MoverPool : MonoBehaviour
     void Start()
     {
 		current = 0;
-		Reposition(0);
-		Reposition(0);
-		Reposition(1);
     }
 
     // Update is called once per frame
