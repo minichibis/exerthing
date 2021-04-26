@@ -21,6 +21,10 @@ public class GameManager : MonoBehaviour, ObsServ
     public int speed;
     public int stamina;
     public int power;
+
+    public int speedBuff;
+    public int stamBuff;
+    public int powerBuff;
 	
 	public float time;
 
@@ -50,6 +54,10 @@ public class GameManager : MonoBehaviour, ObsServ
         speed = 1;
         stamina = 1;
         power = 1;
+
+        speedBuff = 0;
+        stamBuff = 0;
+        powerBuff = 0;
 
         //only burns calories if the player is running
         if (SceneManager.GetActiveScene().name == "Running Scene")
