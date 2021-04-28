@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour, ObsServ
         if (instance == null)
         {
             instance = this;
-            //DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
