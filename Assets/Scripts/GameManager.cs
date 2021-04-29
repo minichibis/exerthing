@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour, ObsServ
     public int powerBuff;
 
     public bool isRunning;
+    public bool coroutineActive;
 
 	public float time;
     public float distance;
@@ -61,7 +62,7 @@ public class GameManager : MonoBehaviour, ObsServ
     void Start()
     {
         calorieScore = 0;
-		if(KeepShitPlease.k == null){
+		/*if(KeepShitPlease.k == null){
 			speed = 1;
 			stamina = 1;
 			power = 1;
@@ -82,6 +83,7 @@ public class GameManager : MonoBehaviour, ObsServ
 			Debug.Log(k.power);
 			Debug.Log(power);
 		}
+        */
 
         //only burns calories if the player is running
         if (SceneManager.GetActiveScene().name == "Running Scene")
