@@ -28,20 +28,26 @@ public class PlayerBehaviour : MonoBehaviour, ObsCom
     // Update is called once per frame
     void Update()
     {
-			if(Input.GetKeyDown(KeyCode.W))
-			{
-				if(gameObject.GetComponent<RunningState>().enabled || gameObject.GetComponent<DuckingState>().enabled){
-					Jump();
-					curState.Action();
-				}
+		if(Input.GetKeyDown(KeyCode.W))
+		{
+			if(gameObject.GetComponent<RunningState>().enabled || gameObject.GetComponent<DuckingState>().enabled){
+				Jump();
+				curState.Action();
 			}
-			else if (Input.GetKeyDown(KeyCode.S))
-			{
-				if(gameObject.GetComponent<RunningState>().enabled){
-					Duck();
-					curState.Action();
-				}
+		}
+		else if (Input.GetKeyDown(KeyCode.S))
+		{
+			if(gameObject.GetComponent<RunningState>().enabled){
+				Duck();
+				curState.Action();
 			}
+		}
+
+		if (gManager.time <= 0)
+		{
+			OutOfEnergy();
+		}
+
 		notifyObserver();
 		renderer.sprite = curState.GetSprite();
     }
@@ -131,5 +137,10 @@ public class PlayerBehaviour : MonoBehaviour, ObsCom
 
 		//Possibly decrement amount of running time after being hit
 		//Here
+	}
+
+	public void OutOfEnergy()
+	{
+		curState = gameObject.GetComponent<OutOfEnergyState>();
 	}
 }
