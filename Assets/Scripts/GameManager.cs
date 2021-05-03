@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour, ObsServ
     public int powerBuff;
 
     public bool isRunning;
-    public bool coroutineActive;
 
 	public float time;
     public float distance;
