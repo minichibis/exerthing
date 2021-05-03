@@ -50,9 +50,9 @@ public class GameManager : MonoBehaviour, ObsServ
         }
         else
         {
-            Destroy(gameObject);
             Debug.LogError("Trying to instantiate a second" +
                 "instance of singleton Game Manager");
+            Destroy(gameObject);
         }
     }
     #endregion
