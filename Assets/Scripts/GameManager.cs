@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour, ObsServ
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour, ObsServ
     void Start()
     {
         calorieScore = 0;
-		/*if(KeepShitPlease.k == null){
+		if(KeepShitPlease.k == null){
 			speed = 1;
 			stamina = 1;
 			power = 1;
@@ -82,7 +82,6 @@ public class GameManager : MonoBehaviour, ObsServ
 			Debug.Log(k.power);
 			Debug.Log(power);
 		}
-        */
 
         //only burns calories if the player is running
         if (SceneManager.GetActiveScene().name == "Running Scene")
