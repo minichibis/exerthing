@@ -22,7 +22,7 @@ public class LevelUp : MonoBehaviour
     void Start()
     {
         gameManager = GameManager.instance;
-		k = KeepShitPlease.k;
+		//k = KeepShitPlease.k;
         speedUpCount = 0;
         stamUpCount = 0;
         powerUpCount = 0;
@@ -32,7 +32,7 @@ public class LevelUp : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "Level Up Scene")
         {
-            caloriesText.text = "Calories: " + PlayerPrefs.GetInt("Calories");
+            caloriesText.text = "Calories: " + gameManager.calorieScore;
             speedText.text = "" + (gameManager.speed + speedUpCount);
             staminaText.text = "" + (gameManager.stamina + stamUpCount);
             powerText.text = "" + (gameManager.power + powerUpCount);
@@ -48,10 +48,10 @@ public class LevelUp : MonoBehaviour
 
     public void increaseSpeed()
     {
-        if (PlayerPrefs.GetInt("Calories") >= 10)
+        if (gameManager.calorieScore >= 10)
         {
             speedUpCount++;
-            PlayerPrefs.SetInt("Calories", PlayerPrefs.GetInt("Calories") - 10);
+            gameManager.calorieScore -= 10;
         }
     }
 
@@ -60,16 +60,16 @@ public class LevelUp : MonoBehaviour
         if (speedUpCount > 0)
         {
             speedUpCount--;
-            PlayerPrefs.SetInt("Calories", PlayerPrefs.GetInt("Calories") + 10);
+            gameManager.calorieScore += 10;
         }
     }
 
     public void increaseStamina()
     {
-        if (PlayerPrefs.GetInt("Calories") >= 10)
+        if (gameManager.calorieScore >= 10)
         {
             stamUpCount++;
-            PlayerPrefs.SetInt("Calories", PlayerPrefs.GetInt("Calories") - 10);
+            gameManager.calorieScore -= 10;
         }
     }
 
@@ -78,16 +78,16 @@ public class LevelUp : MonoBehaviour
         if (stamUpCount > 0)
         {
             stamUpCount--;
-            PlayerPrefs.SetInt("Calories", PlayerPrefs.GetInt("Calories") + 10);
+            gameManager.calorieScore += 10;
         }
     }
 
     public void increasePower()
     {
-        if (PlayerPrefs.GetInt("Calories") >= 10)
+        if (gameManager.calorieScore >= 10)
         {
-            powerUpCount++; 
-            PlayerPrefs.SetInt("Calories", PlayerPrefs.GetInt("Calories") - 10);
+            powerUpCount++;
+            gameManager.calorieScore -= 10;
         }
     }
 
@@ -96,7 +96,7 @@ public class LevelUp : MonoBehaviour
         if (powerUpCount > 0)
         {
             powerUpCount--;
-            PlayerPrefs.SetInt("Calories", PlayerPrefs.GetInt("Calories") + 10);
+            gameManager.calorieScore += 10;
         }
     }
 
@@ -105,12 +105,12 @@ public class LevelUp : MonoBehaviour
         gameManager.speed += speedUpCount;
         gameManager.stamina += stamUpCount;
         gameManager.power += powerUpCount;
-		k.speed += speedUpCount;
-        k.stamina += stamUpCount;
-        k.power += powerUpCount;
+		//k.speed += speedUpCount;
+        //k.stamina += stamUpCount;
+        //k.power += powerUpCount;
 
         resetLevelUp();
-        PlayerPrefs.DeleteKey("Calories");
+        //PlayerPrefs.DeleteKey("Calories");
         SceneManager.LoadScene("Meal Scene");
         SceneManager.UnloadSceneAsync("Level Up Scene");
     }

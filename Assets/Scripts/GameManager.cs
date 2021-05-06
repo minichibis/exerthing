@@ -40,6 +40,10 @@ public class GameManager : MonoBehaviour, ObsServ
     public float distance;
 	
 	public bool killed;
+
+    public Coroutine calorieBurn;
+    public Coroutine distanceLeft;
+    public Coroutine energyLeft;
     //public bool started;
 
     #region Singleton code
@@ -117,9 +121,9 @@ public class GameManager : MonoBehaviour, ObsServ
             distance = 250;
 
             isRunning = true;
-            StartCoroutine(burnCalories());
-            StartCoroutine(loseEnergy());
-            StartCoroutine(runDistance());
+            calorieBurn = StartCoroutine(burnCalories());
+            energyLeft = StartCoroutine(loseEnergy());
+            distanceLeft = StartCoroutine(runDistance());
 
             killed = false;
 
@@ -149,9 +153,9 @@ public class GameManager : MonoBehaviour, ObsServ
         //started = false;
         Debug.Log("Ending Run");
 
-        StopCoroutine(burnCalories());
-        StopCoroutine(loseEnergy());
-        StopCoroutine(runDistance());
+        StopCoroutine(calorieBurn);
+        StopCoroutine(energyLeft);
+        StopCoroutine(distanceLeft);
 
         energyText.text = "Energy: 0";
 
@@ -165,7 +169,6 @@ public class GameManager : MonoBehaviour, ObsServ
     {
         if(isRunning) //Run started
         {
-            //PlayerPrefs.SetInt("Calories", calorieScore);
             calorieText.text = "Calories: " + calorieScore;
             distText.text = "Distance to go: " + (int)distance;
             if (time > 0) //If time still remaining

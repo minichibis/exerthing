@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class KeepShitPlease : MonoBehaviour
 {
-	public static KeepShitPlease k;
+	/*public static KeepShitPlease k;
 	
 	public GameManager m;
 	
@@ -37,7 +37,7 @@ public class KeepShitPlease : MonoBehaviour
         if(m == null){
 			//Debug.Log(power);
 			m = GameObject.Find("GameManager").GetComponent<GameManager>();
-			/*if (m != null){
+			if (m != null){
 				m.speed = speed;
 				m.stamina = stamina;
 				m.power = power;
@@ -45,7 +45,7 @@ public class KeepShitPlease : MonoBehaviour
 				m.stamina = stamBuff;
 				m.power = powerBuff;
 				//Debug.Log(m.power);
-			}*/
+			}
 		}else{
 			speed = m.speed;
 			stamina = m.stamina;
@@ -66,4 +66,5 @@ public class KeepShitPlease : MonoBehaviour
 			}
 		}
     }
+	*/
 }
