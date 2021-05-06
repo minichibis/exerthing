@@ -129,6 +129,12 @@ public class GameManager : MonoBehaviour, ObsServ
 
             Debug.Log("Starting Run");
         }
+        else if (SceneManager.GetActiveScene().name == "Title Scene")
+        {
+            Button startButton = GameObject.FindGameObjectWithTag("StartButton").GetComponent<Button>();
+
+            startButton.onClick.AddListener(BeginRun);
+        }
     }
 
     /*public void startRun()
@@ -275,7 +281,6 @@ public class GameManager : MonoBehaviour, ObsServ
     public void backToStart()
     {
         SceneManager.LoadScene("Title Scene");
-        SceneManager.UnloadSceneAsync("Victory");
-
+        //SceneManager.UnloadSceneAsync("Victory");
     }
 }

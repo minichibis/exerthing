@@ -10,6 +10,7 @@ TagManager:
   - DistanceText
   - EnergyText
   - GameOverText
+  - StartButton
   layers:
   - Default
   - TransparentFX
