@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour, ObsServ
             gameOver = GameObject.FindGameObjectWithTag("GameOverText").GetComponent<TextMeshProUGUI>();
 
             Debug.Log("Initializing Running scene");
-            time = 49;
+            time = 49 + ((int)(stamina / 2));
             distance = 250;
 
             isRunning = true;
