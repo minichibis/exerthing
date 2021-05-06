@@ -271,8 +271,7 @@ public class GameManager : MonoBehaviour, ObsServ
 
     public void FinishGame()
     {
-        SceneManager.LoadScene("Victory");
-        SceneManager.UnloadSceneAsync("Running Scene");
+        isRunning = false;
         //Reset Stats
         calorieScore = 0;
 
@@ -283,6 +282,9 @@ public class GameManager : MonoBehaviour, ObsServ
         speedBuff = 0;
         stamBuff = 0;
         powerBuff = 0;
+
+        SceneManager.LoadScene("Victory");
+        SceneManager.UnloadSceneAsync("Running Scene");
     }
 
     public void backToStart()
