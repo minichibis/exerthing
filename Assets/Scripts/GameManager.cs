@@ -181,9 +181,12 @@ public class GameManager : MonoBehaviour, ObsServ
             {
                 energyText.text = "Energy: " + ((int)time + 1);
                 if (distance <= 0){
-                    endRun();
+                    //endRun(); //breaks logic
+                    StopCoroutine(calorieBurn);
+                    StopCoroutine(energyLeft);
+                    StopCoroutine(distanceLeft);
                     //isRunning = false;
-					killed = true; //Doesnt make sense but ok
+                    killed = true; //Doesnt make sense but ok
 					gameOver.text = "You Win!";
 
 					Invoke("FinishGame", 2.0f);
@@ -281,6 +284,6 @@ public class GameManager : MonoBehaviour, ObsServ
     public void backToStart()
     {
         SceneManager.LoadScene("Title Scene");
-        //SceneManager.UnloadSceneAsync("Victory");
+        SceneManager.UnloadSceneAsync("Victory");
     }
 }
