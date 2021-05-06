@@ -133,6 +133,14 @@ public class PlayerBehaviour : MonoBehaviour, ObsCom
 		if(!gManager.killed){
 			AudioSource.PlayClipAtPoint(hitSound, other.transform.position);
 			gManager.time -= Mathf.Abs((11 - gManager.power));
+			if(gManager.calorieScore - Mathf.Abs((11 - gManager.power)) < 0)
+			{
+				gManager.calorieScore = 0;
+			}
+			else
+			{
+				gManager.calorieScore -= Mathf.Abs((11 - gManager.power));
+			}
 			
 		}
 
