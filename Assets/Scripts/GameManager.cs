@@ -246,6 +246,8 @@ public class GameManager : MonoBehaviour, ObsServ
     public void BeginRun()
     {
         SceneManager.LoadScene("Running Scene");
+
+        //SceneManager.UnloadSceneAsync("Title Scene");
         //SceneManager.LoadScene("Running 2");
     }
 
