@@ -243,16 +243,11 @@ public class GameManager : MonoBehaviour, ObsServ
 		}
 	}
 
-    /*public void BeginRun()
+    public void BeginRun()
     {
-        time = 49;
-        distance = 250;
-        Debug.Log("Beginning Run");
-
         SceneManager.LoadScene("Running Scene");
         //SceneManager.LoadScene("Running 2");
     }
-    */
 
     public void LevelUp()
     {
