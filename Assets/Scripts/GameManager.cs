@@ -186,7 +186,7 @@ public class GameManager : MonoBehaviour, ObsServ
                     StopCoroutine(energyLeft);
                     StopCoroutine(distanceLeft);
                     //isRunning = false;
-                    killed = true; //Doesnt make sense but ok
+                    //killed = true; //Doesnt make sense but ok
 					gameOver.text = "You Win!";
 
 					Invoke("FinishGame", 2.0f);
@@ -210,7 +210,9 @@ public class GameManager : MonoBehaviour, ObsServ
                 //    obstacles[i].GetComponent<MoveLeft>().enabled = false;
                 //}
             }
+            
         }
+
     }
 
     private IEnumerator burnCalories()
@@ -262,7 +264,9 @@ public class GameManager : MonoBehaviour, ObsServ
 
     public void LevelUp()
     {
+        
         SceneManager.LoadScene("Level Up Scene");
+        StopAllCoroutines();
     }
 
     public void FinishGame()

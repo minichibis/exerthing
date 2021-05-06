@@ -132,7 +132,8 @@ public class PlayerBehaviour : MonoBehaviour, ObsCom
 		//Here
 		if(!gManager.killed){
 			AudioSource.PlayClipAtPoint(hitSound, other.transform.position);
-			gManager.time -= (11 - gManager.power);
+			gManager.time -= Mathf.Abs((11 - gManager.power));
+			
 		}
 
 		//Possibly decrement amount of running time after being hit
