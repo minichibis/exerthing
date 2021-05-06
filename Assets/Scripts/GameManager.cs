@@ -191,7 +191,7 @@ public class GameManager : MonoBehaviour, ObsServ
                     StopCoroutine(calorieBurn);
                     StopCoroutine(energyLeft);
                     StopCoroutine(distanceLeft);
-                    //isRunning = false;
+                    isRunning = false;
                     //killed = true; //Doesnt make sense but ok
 					gameOver.text = "You Win!";
 
