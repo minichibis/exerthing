@@ -66,6 +66,10 @@ public class MealMaker : MonoBehaviour
         gameManager.powerBuff = meal.getPowerBuff();
 
         SceneManager.LoadScene("Running Scene");
+        //SceneManager.LoadScene("Running 2");
+
+        gameManager.startRun();
+        SceneManager.UnloadSceneAsync("Meal Scene");
     }
 
     public void DisplayMeal()

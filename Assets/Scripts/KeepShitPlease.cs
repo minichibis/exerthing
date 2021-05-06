@@ -21,6 +21,7 @@ public class KeepShitPlease : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+		m = FindObjectOfType<GameManager>();
 		if(k == null){
 			k = this;
 			DontDestroyOnLoad(gameObject);

@@ -112,5 +112,6 @@ public class LevelUp : MonoBehaviour
         resetLevelUp();
         PlayerPrefs.DeleteKey("Calories");
         SceneManager.LoadScene("Meal Scene");
+        SceneManager.UnloadSceneAsync("Level Up Scene");
     }
 }

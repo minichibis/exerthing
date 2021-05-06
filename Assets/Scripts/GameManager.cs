@@ -16,9 +16,12 @@ public class GameManager : MonoBehaviour, ObsServ
 {
     public int calorieScore;
     public TextMeshProUGUI calorieText;
-	public Text engtext;
-    public Text distText;
-    public Text gameOver;
+    public TextMeshProUGUI energytext;
+    public TextMeshProUGUI distText;
+    public TextMeshProUGUI gameOver;
+    //public Text engtext;
+    //public Text distText;
+    //public Text gameOver;
     //public GameObject[] background;
     //public GameObject[] obstacles;
 
@@ -37,6 +40,7 @@ public class GameManager : MonoBehaviour, ObsServ
     public float distance;
 	
 	public bool killed;
+    //public bool started;
 
     #region Singleton code
     public static GameManager instance;
@@ -82,9 +86,11 @@ public class GameManager : MonoBehaviour, ObsServ
 			Debug.Log(k.power);
 			Debug.Log(power);
 		}
+        
 
+        //This needs to move from start to allow start screen to exist
         //only burns calories if the player is running
-        if (SceneManager.GetActiveScene().name == "Running Scene")
+        /*if (SceneManager.GetActiveScene().name == "Running Scene")
         {
             gameOver.gameObject.SetActive(false);
             isRunning = true;
@@ -100,32 +106,60 @@ public class GameManager : MonoBehaviour, ObsServ
             StopCoroutine("burnCalories");
             StopCoroutine("loseEnergy");
             StartCoroutine("runDistance");
-        }
-		killed = false;
+        }*/
+		//killed = false;
+    }
+
+    public void startRun()
+    {
+        //started = true;
+
+        gameOver.gameObject.SetActive(false);
+        isRunning = true;
+        StartCoroutine("burnCalories");
+        StartCoroutine("loseEnergy");
+        StartCoroutine("runDistance");
+        time = 49;
+        distance = 250;
+
+        killed = false;
+    }
+
+    public void endRun()
+    {
+        //started = false;
+
+        isRunning = false;
+        StopCoroutine("burnCalories");
+        StopCoroutine("loseEnergy");
+        StartCoroutine("runDistance");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(isRunning)
+        if(isRunning) //Run started
         {
             PlayerPrefs.SetInt("Calories", calorieScore);
             calorieText.text = "Calories: " + calorieScore;
             distText.text = "Distance to go: " + (int)distance;
-            if (time > 0)
+            if (time > 0) //If time still remaining
             {
-                engtext.text = "Energy: " + ((int)time + 1);
-				if(distance < 0){
-					isRunning = false;
-					killed = true;
+                energytext.text = "Energy: " + ((int)time + 1);
+				if(distance <= 0){
+                    endRun();
+                    //isRunning = false;
+					killed = true; //Doesnt make sense but ok
 					gameOver.gameObject.SetActive(true);
 					gameOver.text = "You Win!";
-					Invoke("LevelUp", 1.0f);
+
+					Invoke("FinishGame", 2.0f);
 				}
             }
-            else
+            else if (time <= 0) //If timed out
             {
-                engtext.text = "Energy: 0";
+                endRun();
+                energytext.text = "Energy: 0";
                 //background = GameObject.FindGameObjectsWithTag("MovingBackground");
                 //obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
                 //for(int i = 0; i < background.Length; i++)
@@ -138,7 +172,7 @@ public class GameManager : MonoBehaviour, ObsServ
                 //}
                 gameOver.gameObject.SetActive(true);
 				gameOver.text = "Out of Energy!";
-                Invoke("LevelUp", 0.5f);
+                Invoke("LevelUp", 1.0f);
             }
         }
     }
@@ -181,8 +215,40 @@ public class GameManager : MonoBehaviour, ObsServ
 		}
 	}
 
+    public void BeginRun()
+    {
+        SceneManager.LoadScene("Running Scene");
+        //SceneManager.LoadScene("Running 2");
+
+        startRun();
+        killed = false;
+    }
+
     public void LevelUp()
     {
         SceneManager.LoadScene("Level Up Scene");
+    }
+
+    public void FinishGame()
+    {
+        SceneManager.LoadScene("Victory");
+        SceneManager.UnloadSceneAsync("Running Scene");
+        //Reset Stats
+        calorieScore = 0;
+
+        speed = 1;
+        stamina = 1;
+        power = 1;
+
+        speedBuff = 0;
+        stamBuff = 0;
+        powerBuff = 0;
+    }
+
+    public void backToStart()
+    {
+        SceneManager.LoadScene("Title Scene");
+        SceneManager.UnloadSceneAsync("Victory");
+
     }
 }
