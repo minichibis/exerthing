@@ -452,7 +452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   calorieScore: 0
   calorieText: {fileID: 0}
-  energytext: {fileID: 0}
+  energyText: {fileID: 0}
   distText: {fileID: 0}
   gameOver: {fileID: 0}
   speed: 0
@@ -882,7 +882,7 @@ GameObject:
   - component: {fileID: 1659807657}
   m_Layer: 5
   m_Name: Back to Start
-  m_TagString: Untagged
+  m_TagString: BackToStart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

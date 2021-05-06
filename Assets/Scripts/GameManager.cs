@@ -135,6 +135,12 @@ public class GameManager : MonoBehaviour, ObsServ
 
             startButton.onClick.AddListener(BeginRun);
         }
+        else if (SceneManager.GetActiveScene().name == "Victory")
+        {
+            Button resetButton = GameObject.FindGameObjectWithTag("BackToStart").GetComponent<Button>();
+
+            resetButton.onClick.AddListener(backToStart);
+        }
     }
 
     /*public void startRun()
@@ -175,10 +181,10 @@ public class GameManager : MonoBehaviour, ObsServ
     {
         if(isRunning) //Run started
         {
-            calorieText.text = "Calories: " + calorieScore;
-            distText.text = "Distance to go: " + (int)distance;
             if (time > 0) //If time still remaining
             {
+                calorieText.text = "Calories: " + calorieScore;
+                distText.text = "Distance to go: " + (int)distance;
                 energyText.text = "Energy: " + ((int)time + 1);
                 if (distance <= 0){
                     //endRun(); //breaks logic
@@ -284,12 +290,12 @@ public class GameManager : MonoBehaviour, ObsServ
         powerBuff = 0;
 
         SceneManager.LoadScene("Victory");
-        SceneManager.UnloadSceneAsync("Running Scene");
+        //SceneManager.UnloadSceneAsync("Running Scene");
     }
 
     public void backToStart()
     {
         SceneManager.LoadScene("Title Scene");
-        SceneManager.UnloadSceneAsync("Victory");
+        //SceneManager.UnloadSceneAsync("Victory");
     }
 }
