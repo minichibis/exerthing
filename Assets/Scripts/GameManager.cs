@@ -123,6 +123,8 @@ public class GameManager : MonoBehaviour, ObsServ
         distance = 250;
 
         killed = false;
+
+        Debug.Log("Starting Run");
     }
 
     public void endRun()
@@ -133,6 +135,8 @@ public class GameManager : MonoBehaviour, ObsServ
         StopCoroutine("burnCalories");
         StopCoroutine("loseEnergy");
         StartCoroutine("runDistance");
+
+        Debug.Log("Ending Run");
     }
 
     // Update is called once per frame
