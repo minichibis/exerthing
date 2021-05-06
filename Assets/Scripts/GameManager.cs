@@ -111,11 +111,11 @@ public class GameManager : MonoBehaviour, ObsServ
             time = 49;
             distance = 250;
 
+            isRunning = true;
             StartCoroutine(burnCalories());
             StartCoroutine(loseEnergy());
             StartCoroutine(runDistance());
             gameOver.gameObject.SetActive(false);
-            isRunning = true;
 
             killed = false;
 
@@ -145,10 +145,16 @@ public class GameManager : MonoBehaviour, ObsServ
         //started = false;
         Debug.Log("Ending Run");
 
-        isRunning = false;
         StopCoroutine(burnCalories());
         StopCoroutine(loseEnergy());
         StopCoroutine(runDistance());
+
+        energytext.text = "Energy: 0";
+
+        gameOver.gameObject.SetActive(true);
+        gameOver.text = "Out of Energy!";
+
+        Invoke("LevelUp", 1.0f);
     }
 
     // Update is called once per frame
@@ -156,9 +162,9 @@ public class GameManager : MonoBehaviour, ObsServ
     {
         if(isRunning) //Run started
         {
-            PlayerPrefs.SetInt("Calories", calorieScore);
-            calorieText.text = "Calories: " + calorieScore;
-            distText.text = "Distance to go: " + (int)distance;
+            //PlayerPrefs.SetInt("Calories", calorieScore);
+            //calorieText.text = "Calories: " + calorieScore;
+            //distText.text = "Distance to go: " + (int)distance;
             if (time > 0) //If time still remaining
             {
                 energytext.text = "Energy: " + ((int)time + 1);
@@ -174,9 +180,11 @@ public class GameManager : MonoBehaviour, ObsServ
             }
             else if (time <= 0) //If timed out
             {
-                Debug.Log("Out of Time");
-                endRun();
-                energytext.text = "Energy: 0";
+                if (!killed)
+                {
+                    killed = true;
+                    endRun();
+                }
                 //background = GameObject.FindGameObjectsWithTag("MovingBackground");
                 //obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
                 //for(int i = 0; i < background.Length; i++)
@@ -187,9 +195,6 @@ public class GameManager : MonoBehaviour, ObsServ
                 //{
                 //    obstacles[i].GetComponent<MoveLeft>().enabled = false;
                 //}
-                gameOver.gameObject.SetActive(true);
-				gameOver.text = "Out of Energy!";
-                Invoke("LevelUp", 1.0f);
             }
         }
     }
