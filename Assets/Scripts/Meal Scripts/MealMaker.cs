@@ -68,7 +68,7 @@ public class MealMaker : MonoBehaviour
         SceneManager.LoadScene("Running Scene");
         //SceneManager.LoadScene("Running 2");
 
-        gameManager.startRun();
+        //gameManager.BeginRun();
         SceneManager.UnloadSceneAsync("Meal Scene");
     }
 

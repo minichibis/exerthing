@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour, ObsServ
         if (instance == null)
         {
             instance = this;
-            //DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour, ObsServ
     void Start()
     {
         calorieScore = 0;
-		if(KeepShitPlease.k == null){
+		/*if(KeepShitPlease.k == null){
 			speed = 1;
 			stamina = 1;
 			power = 1;
@@ -86,32 +86,46 @@ public class GameManager : MonoBehaviour, ObsServ
 			Debug.Log(k.power);
 			Debug.Log(power);
 		}
-        
-
-        //This needs to move from start to allow start screen to exist
-        //only burns calories if the player is running
-        /*if (SceneManager.GetActiveScene().name == "Running Scene")
-        {
-            gameOver.gameObject.SetActive(false);
-            isRunning = true;
-            StartCoroutine("burnCalories");
-            StartCoroutine("loseEnergy");
-            StartCoroutine("runDistance");
-            time = 49;
-            distance = 250;
-        }
-        else
-        {
-            isRunning = false;
-            StopCoroutine("burnCalories");
-            StopCoroutine("loseEnergy");
-            StartCoroutine("runDistance");
-        }*/
-		//killed = false;
+        */
     }
 
-    public void startRun()
+    void OnEnable()
     {
+        SceneManager.sceneLoaded += OnLevelFinishedLoading;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnLevelFinishedLoading;
+    }
+
+    void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("Level Loaded");
+        Debug.Log(scene.name);
+        Debug.Log(mode);
+
+        if (SceneManager.GetActiveScene().name == "Running Scene")
+        {
+            Debug.Log("Initializing Running scene");
+            time = 49;
+            distance = 250;
+
+            StartCoroutine(burnCalories());
+            StartCoroutine(loseEnergy());
+            StartCoroutine(runDistance());
+            gameOver.gameObject.SetActive(false);
+            isRunning = true;
+
+            killed = false;
+
+            Debug.Log("Starting Run");
+        }
+    }
+
+    /*public void startRun()
+    {
+        Debug.Log("Calling startRun");
         //started = true;
 
         gameOver.gameObject.SetActive(false);
@@ -119,24 +133,22 @@ public class GameManager : MonoBehaviour, ObsServ
         StartCoroutine("burnCalories");
         StartCoroutine("loseEnergy");
         StartCoroutine("runDistance");
-        time = 49;
-        distance = 250;
 
         killed = false;
 
         Debug.Log("Starting Run");
     }
+    */
 
     public void endRun()
     {
         //started = false;
+        Debug.Log("Ending Run");
 
         isRunning = false;
-        StopCoroutine("burnCalories");
-        StopCoroutine("loseEnergy");
-        StartCoroutine("runDistance");
-
-        Debug.Log("Ending Run");
+        StopCoroutine(burnCalories());
+        StopCoroutine(loseEnergy());
+        StopCoroutine(runDistance());
     }
 
     // Update is called once per frame
@@ -162,6 +174,7 @@ public class GameManager : MonoBehaviour, ObsServ
             }
             else if (time <= 0) //If timed out
             {
+                Debug.Log("Out of Time");
                 endRun();
                 energytext.text = "Energy: 0";
                 //background = GameObject.FindGameObjectsWithTag("MovingBackground");
@@ -202,6 +215,7 @@ public class GameManager : MonoBehaviour, ObsServ
 
     private IEnumerator runDistance()
     {
+        Debug.Log("Distance closing");
         for (int i = 0; i > -1; i++)
         {
             distance -= 1 + ((float)speed * 0.1f) + ((float)speedBuff * 0.1f);
@@ -219,14 +233,16 @@ public class GameManager : MonoBehaviour, ObsServ
 		}
 	}
 
-    public void BeginRun()
+    /*public void BeginRun()
     {
+        time = 49;
+        distance = 250;
+        Debug.Log("Beginning Run");
+
         SceneManager.LoadScene("Running Scene");
         //SceneManager.LoadScene("Running 2");
-
-        startRun();
-        killed = false;
     }
+    */
 
     public void LevelUp()
     {

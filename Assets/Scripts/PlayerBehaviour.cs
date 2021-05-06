@@ -21,8 +21,8 @@ public class PlayerBehaviour : MonoBehaviour, ObsCom
         curState = gameObject.GetComponent<RunningState>();
         rb2d = gameObject.GetComponent<Rigidbody2D>();
         duckCollider.enabled = false;
-		gManager = gameManager.GetComponent<GameManager>();
-		registerObserver(GameObject.Find("GameManager").GetComponent<GameManager>() as ObsServ);
+		gManager = GameManager.instance;
+		registerObserver(gManager.GetComponent<GameManager>() as ObsServ);
     }
 
     // Update is called once per frame
