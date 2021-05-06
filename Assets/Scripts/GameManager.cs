@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour, ObsServ
 {
     public int calorieScore;
     public TextMeshProUGUI calorieText;
-    public TextMeshProUGUI energytext;
+    public TextMeshProUGUI energyText;
     public TextMeshProUGUI distText;
     public TextMeshProUGUI gameOver;
     //public Text engtext;
@@ -107,6 +107,11 @@ public class GameManager : MonoBehaviour, ObsServ
 
         if (SceneManager.GetActiveScene().name == "Running Scene")
         {
+            calorieText = GameObject.FindGameObjectWithTag("CalorieText").GetComponent<TextMeshProUGUI>();
+            energyText = GameObject.FindGameObjectWithTag("EnergyText").GetComponent<TextMeshProUGUI>();
+            distText = GameObject.FindGameObjectWithTag("DistanceText").GetComponent<TextMeshProUGUI>();
+            gameOver = GameObject.FindGameObjectWithTag("GameOverText").GetComponent<TextMeshProUGUI>();
+
             Debug.Log("Initializing Running scene");
             time = 49;
             distance = 250;
@@ -115,7 +120,6 @@ public class GameManager : MonoBehaviour, ObsServ
             StartCoroutine(burnCalories());
             StartCoroutine(loseEnergy());
             StartCoroutine(runDistance());
-            gameOver.gameObject.SetActive(false);
 
             killed = false;
 
@@ -149,9 +153,8 @@ public class GameManager : MonoBehaviour, ObsServ
         StopCoroutine(loseEnergy());
         StopCoroutine(runDistance());
 
-        energytext.text = "Energy: 0";
+        energyText.text = "Energy: 0";
 
-        gameOver.gameObject.SetActive(true);
         gameOver.text = "Out of Energy!";
 
         Invoke("LevelUp", 1.0f);
@@ -163,16 +166,15 @@ public class GameManager : MonoBehaviour, ObsServ
         if(isRunning) //Run started
         {
             //PlayerPrefs.SetInt("Calories", calorieScore);
-            //calorieText.text = "Calories: " + calorieScore;
-            //distText.text = "Distance to go: " + (int)distance;
+            calorieText.text = "Calories: " + calorieScore;
+            distText.text = "Distance to go: " + (int)distance;
             if (time > 0) //If time still remaining
             {
-                energytext.text = "Energy: " + ((int)time + 1);
-				if(distance <= 0){
+                energyText.text = "Energy: " + ((int)time + 1);
+                if (distance <= 0){
                     endRun();
                     //isRunning = false;
 					killed = true; //Doesnt make sense but ok
-					gameOver.gameObject.SetActive(true);
 					gameOver.text = "You Win!";
 
 					Invoke("FinishGame", 2.0f);

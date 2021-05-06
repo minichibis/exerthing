@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Obstacle
+  - MovingBackground
+  - CalorieText
+  - DistanceText
+  - EnergyText
+  - GameOverText
   layers:
   - Default
   - TransparentFX
